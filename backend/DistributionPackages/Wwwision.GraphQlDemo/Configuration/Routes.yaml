@@ -1,0 +1,7 @@
+- name: 'GraphQL API'
+  uriPattern: 'api/<GraphQLSubroutes>'
+  subRoutes:
+    'GraphQLSubroutes':
+      package: 't3n.GraphQL'
+      variables:
+        'endpoint': 'demo'

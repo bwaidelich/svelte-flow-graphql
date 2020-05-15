@@ -1,0 +1,18 @@
+type Query {
+    articles: [Article]
+}
+
+type Article {
+    id: ArticleId!
+    created_at: Date!
+    title: String!
+    text: String
+}
+
+scalar ArticleId
+
+scalar Date
+
+schema {
+    query: Query
+}

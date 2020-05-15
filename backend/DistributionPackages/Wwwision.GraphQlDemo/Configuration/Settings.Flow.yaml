@@ -1,0 +1,12 @@
+Neos:
+  Flow:
+    http:
+      chain:
+        'preprocess':
+          chain:
+            'CORS':
+              component: 'Wwwision\GraphQlDemo\CorsComponent'
+    mvc:
+      routes:
+        'Wwwision.GraphQlDemo':
+          position: 'start'

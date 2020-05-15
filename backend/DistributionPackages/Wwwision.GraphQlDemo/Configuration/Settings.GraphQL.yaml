@@ -1,0 +1,9 @@
+t3n:
+  GraphQL:
+    endpoints:
+      'demo':
+        schemas:
+          root:
+            typeDefs: 'resource://Wwwision.GraphQlDemo/Private/GraphQL/schema.graphql'
+            resolvers:
+              Query: 'Wwwision\GraphQlDemo\QueryResolver'

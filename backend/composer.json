@@ -1,0 +1,32 @@
+{
+    "name": "wwwision/svelte-graphql-distribution",
+    "description": "Neos Flow based demo backend",
+    "license": "MIT",
+    "config": {
+        "vendor-dir": "Packages/Libraries",
+        "bin-dir": "bin"
+    },
+    "require": {
+        "neos/flow": "~6.2.0",
+        "t3n/graphql": "^2.1",
+        "wwwision/graphqldemo": "@dev"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "neos/kickstarter": "~6.2.0",
+        "neos/buildessentials": "~6.2.0",
+        "neos/behat": "dev-master",
+        "phpunit/phpunit": "~8.1",
+        "mikey179/vfsstream": "~1.6"
+    },
+    "repositories": {
+        "distributionPackages": {
+            "type": "path",
+            "url": "./DistributionPackages/*"
+        }
+    },
+    "scripts": {
+        "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+    }
+}
