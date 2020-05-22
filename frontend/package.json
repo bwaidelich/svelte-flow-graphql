@@ -16,13 +16,12 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
-    "sirv-cli": "^0.4.4",
-    "svelte-apollo": "^0.3.0"
+    "node-fetch": "^2.6.0",
+    "sirv-cli": "^0.4.4"
   }
 }

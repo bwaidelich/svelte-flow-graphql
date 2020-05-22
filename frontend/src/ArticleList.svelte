@@ -1,21 +1,38 @@
 <script>
-  import { getClient, query } from 'svelte-apollo';
-  import { ARTICLES } from './queries';
+  import { client } from './api/client';
+  import { ARTICLES } from './api/queries';
   import ArticleTeaser from './ArticleTeaser.svelte';
 
-  const client = getClient();
-  const articles = query(client, { query: ARTICLES });
+  const articlesPerPage = 5;
+
+  let articles = fetchArticles({ first: articlesPerPage });
+
+  function fetchArticles(variables) {
+    return client.query({ query: ARTICLES, variables })
+  }
+  
+  function nextPage(pageInfo) {
+    articles = fetchArticles({first: articlesPerPage, after: pageInfo.endCursor})
+  }
+
+  function previousPage(pageInfo) {
+    articles = fetchArticles({last: articlesPerPage, before: pageInfo.startCursor})
+  }
+
 </script>
 
-{#await $articles}
+
+{#await articles}
   Loading...
 {:then result}
-  {#each result.data.articles as article}
-    <ArticleTeaser date={article.created_at}>
-      <span slot="header">{article.title}</span>
-      {@html article.text}
+  {#each result.data.articles.edges as edge}
+    <ArticleTeaser date={edge.node.created_at}>
+      <span slot="header">{edge.node.title}</span>
+      {@html edge.node.text}
     </ArticleTeaser>
   {/each}
+  <button on:click={previousPage(result.data.articles.pageInfo)} disabled={!result.data.articles.pageInfo.hasPreviousPage}>PREV</button>
+  <button on:click={nextPage(result.data.articles.pageInfo)} disabled={!result.data.articles.pageInfo.hasNextPage}>NEXT</button>
 {:catch error}
   Error: {error}
 {/await}
